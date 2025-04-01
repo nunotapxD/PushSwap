@@ -3,24 +3,17 @@
 void	push_chunk(t_stack *a, t_stack *b, int min_pivot, int max_pivot)
 {
     int		i;
-    int		size;
+    int		original_size;
     int		pushed;
-    t_node	*current;
-    int		target;
+    int		rotations;
 
-    size = a->size;
+    original_size = a->size;
     pushed = 0;
-    target = 0;
-    current = a->top;
-    // Count elements in the range without checking stack size
-    while (current)
-    {
-        if (current->value >= min_pivot && current->value <= max_pivot)
-            target++;
-        current = current->next;
-    }
+    rotations = 0;
+    
+    // Push elements in range and track rotations
     i = 0;
-    while (i < size && pushed < target && a->size > 3)
+    while (i < original_size && a->size > 3)
     {
         if (a->top->value >= min_pivot && a->top->value <= max_pivot)
         {
@@ -28,7 +21,18 @@ void	push_chunk(t_stack *a, t_stack *b, int min_pivot, int max_pivot)
             pushed++;
         }
         else
+        {
             ra(a);
+            rotations++;
+        }
+        i++;
+    }
+
+    // Restore stack A's order by undoing rotations
+    i = 0;
+    while (i < rotations && rotations < original_size / 2)
+    {
+        rra(a);
         i++;
     }
 }
