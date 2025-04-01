@@ -31,20 +31,3 @@ void	pb(t_stack *a, t_stack *b)
 		write(1, "pb\n", 3);
 	}
 }
-
-static void	rotate(t_stack *stack)
-{
-	t_node	*first;
-	t_node	*last;
-
-	if (stack->size > 1)
-	{
-		first = stack->top;
-		last = stack->top;
-		while (last->next)
-			last = last->next;
-		stack->top = first->next;
-		first->next = NULL;
-		last->next = first;
-	}
-}

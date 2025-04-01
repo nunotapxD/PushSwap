@@ -41,7 +41,7 @@ int	is_sorted(t_stack *a)
 	return (1);
 }
 
-static int	is_duplicate(t_stack *a, int value)
+int	is_duplicate(t_stack *a, int value)
 {
 	t_node	*current;
 

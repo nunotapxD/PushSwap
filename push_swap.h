@@ -34,6 +34,7 @@ void	rrr(t_stack *a, t_stack *b);
 t_node	*new_node(int value);
 void	free_stack(t_stack *stack);
 int		is_sorted(t_stack *a);
+int		is_duplicate(t_stack *a, int value);
 int		parse_input(t_stack *a, int argc, char **argv);
 int		ft_atoi_check(const char *str, int *error);
 int		get_min(t_stack *stack);

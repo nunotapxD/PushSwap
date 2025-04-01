@@ -1,5 +1,25 @@
 #include "push_swap.h"
 
+static void	reverse_rotate(t_stack *stack)
+{
+	t_node	*last;
+	t_node	*prev;
+
+	if (stack->size > 1)
+	{
+		last = stack->top;
+		prev = NULL;
+		while (last->next)
+		{
+			prev = last;
+			last = last->next;
+		}
+		prev->next = NULL;
+		last->next = stack->top;
+		stack->top = last;
+	}
+}
+
 void	rra(t_stack *a)
 {
 	if (a->size > 1)
