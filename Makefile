@@ -1,45 +1,36 @@
-# Compiler and flags
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: ntomas-a <ntomas-a@student.42porto.com>    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2025/05/15 23:30:23 by ntomas-a          #+#    #+#              #
+#    Updated: 2025/05/15 23:30:23 by ntomas-a         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+NAME			= push_swap
+
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
 
-# Project name
-NAME = push_swap
+RM = rm -f 
 
-# Source files
-SRCS = push_swap.c \
-       operations1.c \
-       operations2.c \
-       operations3.c \
-       operations4.c \
-       utils1.c \
-       utils2.c \
-       utils3.c \
-       utils4.c \
-       sort1.c \
-       sort2.c \
-       sort3.c
+CFLAGS			= -Wall -Wextra -Werror -g -I inc
 
-# Object files
-OBJS = $(SRCS:.c=.o)
+SRCS			= checkers.c errors.c ft_utils.c ft_utils2.c\
+					rules1.c rules2.c rules3.c rules4.c\
+					sort_utils.c sort_utils1.c sort_utils2.c sorting.c sorting2.c main.c\
 
-# Header files
-HEADERS = push_swap.h
 
-# Rules
-all: $(NAME)
+all : $(NAME)
 
-$(NAME): $(OBJS)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
-
-%.o: %.c $(HEADERS)
-	$(CC) $(CFLAGS) -c $< -o $@
+$(NAME): $(SRCS)
+			$(CC) $(SRCS) -o $(NAME)
 
 clean:
-	rm -f $(OBJS)
-
-fclean: clean
 	rm -f $(NAME)
 
-re: fclean all
+fclean: clean
 
-.PHONY: all clean fclean re
+re: fclean $(NAME)
